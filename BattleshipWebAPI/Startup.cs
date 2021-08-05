@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using BattleshipBL;
 using BattleshipDL;
+using Microsoft.EntityFrameworkCore;
 
 namespace BattleshipWebAPI
 {
