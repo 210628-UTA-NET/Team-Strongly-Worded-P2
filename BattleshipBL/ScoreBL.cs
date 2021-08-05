@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipBL
 {
-    class ScoreBL : IScoreBL
+    public class ScoreBL : IScoreBL
     {
         private IScoreDL _repo;
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipBL
 {
-    class StatisticBL : IStatisticBL
+    public class StatisticBL : IStatisticBL
     {
         private IStatisticDL _repo;
 
