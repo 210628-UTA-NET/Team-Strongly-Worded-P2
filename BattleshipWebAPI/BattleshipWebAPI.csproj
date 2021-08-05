@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BattleshipBL\BattleshipBL.csproj" />
+    <ProjectReference Include="..\BattleshipDL\BattleshipDL.csproj" />
   </ItemGroup>
 
 </Project>

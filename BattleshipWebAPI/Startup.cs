@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using BattleshipBL;
+using BattleshipDL;
 
 namespace BattleshipWebAPI
 {
@@ -26,14 +28,22 @@ namespace BattleshipWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // db connection info goes here
-
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BattleshipWebAPI", Version = "v1" });
             });
+
+            // adding connection to db 
+            services.AddDbContext<BattleshipDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Reference2DB")));
+
+            // adding scopes
+            services.AddScoped<IScoreDL, ScoreDL>();
+            services.AddScoped<IStatisticDL, StatisticDL>();
+            services.AddScoped<IUserDL, UserDL>();
+            services.AddScoped<IScoreBL, ScoreBL>();
+            services.AddScoped<IStatisticBL, StatisticBL>();
+            services.AddScoped<IUserBL, UserBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
