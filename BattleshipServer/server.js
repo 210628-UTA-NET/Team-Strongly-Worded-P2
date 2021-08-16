@@ -3,7 +3,15 @@ const app = require('express')();
 // creates a server using http?
 const http = require('http').Server(app);
 // connects socketio with express server?
-const io = require('socket.io')(http);
+// add cors
+const io = require('socket.io')(http, {
+    cors: {
+        origin:'http://localhost:4200',
+        methods: ["GET", "POST"],
+        transports: ['websocket', 'polling', 'flashsocket'],
+        credentials: true
+    }
+});
 
 // create a collection of rooms
 const rooms = {};
@@ -27,9 +35,22 @@ io.on('connection', socket => {
 
     // logic for when a socket tries to join a room
     socket.on('join room', roomId => {
-        safeJoin(roomId);
-        // joining socket will know this one joined a room?
-        socket.emit('room', rooms[roomId]);
+        let roomCount = io.nsps['/'].adapter.rooms[roomId];
+        if(!roomCount) {
+            console.log("Room count variable is null for a reason");
+        }
+        else {
+            if(Object.keys(roomCount).length == 2) {
+                console.log('Room has 2 people');
+                socket.to(roomId).emit('get gameboard', 2);
+            }
+            else {
+                safeJoin(roomId);
+                console.log('Room count is now 1');
+                // joining socket will know this one joined a room?
+                socket.emit('room', rooms[roomId]);
+            }
+        } 
     });
 
     // logic for when a socket wants to add a room to the room list

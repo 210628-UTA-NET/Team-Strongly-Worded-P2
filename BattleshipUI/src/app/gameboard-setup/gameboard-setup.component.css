@@ -118,3 +118,8 @@ td.aircraftcarrierr4{
 td.aircraftcarrierr5{
     background-image: url("../../assets/AircraftCarrierR5.png");
 }
+
+.deployset {
+    margin-left: 30%;
+    margin-right: 30%;
+}

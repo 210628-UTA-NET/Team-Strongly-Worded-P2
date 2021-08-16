@@ -7,7 +7,9 @@
         </ul>
     </div>
     <div class="chat-messages-create-container"> 
-        <input class="chat-messages-create-input" type="text" [(ngModel)]="message">
-        <button  class="chat-messages-create-button" (click)="SendMessage()"> Send </button>
+        <input class="chat-messages-create-input" type="text" 
+            [(ngModel)]="message" 
+            (keyup)="$event.keyCode == 13 && SendMessage()">
+        <!--<button  class="chat-messages-create-button" (click)="SendMessage()"> Send </button>-->
     </div>
 </div>

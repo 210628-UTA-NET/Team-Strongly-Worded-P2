@@ -1,49 +1,37 @@
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .container {
+            position: relative;
+            float: left;
+            margin-right: 100%;
+        }
+    </style> 
 </head>
-<div>
-  <div>
-    <label>Room Number</label>
-  </div>
-  <input type="number" [(ngModel)]="roomNum" />
+<div class="deployset">
+    <button class="btn btn-primary" (click)="tempSetUp()">set</button>
+    <button class="btn btn-primary" (click)="Deploy()">Deploy</button>
 </div>
-<div>
-  <div>
-    <label>Your Id </label>
-  </div>
-  <input type="number" [(ngModel)]="userId" />
-</div>
-<div>
-  <div>
-    <label>Opponent's Id</label>
-  </div>
-  <input type="number" [(ngModel)]="opponentId" />
-</div>
-<button class="btn btn-primary" (click)="SetUpRoom()">Create Room</button>
-<button class="btn btn-primary" (click)="Deploy()">Deploy Ships</button>
-<ng-template [ngIf]="shipsDeployed">
-  <button class="btn btn-danger" routerLink="/gameboard">Advance</button>
-</ng-template>
-<div class="container">
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-6">
-      <table class="table table-bordered border-primary" style="height: fit-content; width: fit-content;">
-        <tbody>
-          <tr *ngFor="let row of height; let i = index">
-            <td *ngFor="let col of width; let j = index" class="{{test[i][j]}}" (click)="select(i,j)">{{i}},{{j}}</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container" id="intheway">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <table class="table table-bordered border-primary" style="height: fit-content; width: fit-content;">
+                <tbody>
+                    <tr *ngFor="let row of height; let i = index">
+                        <td *ngFor="let col of width; let j = index" class="{{test[i][j]}}" (click)="select(i,j)">{{i}},{{j}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <p>{{selected[0]}},{{selected[1]}}</p>
+            <button class="btn btn-primary" (click)="toggleVertical()">Rotate</button>
+            <img src="../../assets/PatrolBoat.png" (click)="selectShip('patrolboat')">
+            <img src="../../assets/Submarine.png" (click)="selectShip('submarine')">
+            <img src="../../assets/Destroyer.png" (click)="selectShip('destroyer')">
+            <img src="../../assets/Battleship.png" (click)="selectShip('battleship')">
+            <img src="../../assets/AircraftCarrier.png" (click)="selectShip('aircraftcarrier')">
+        </div>
     </div>
-    <div class="col">
-      <p>{{selected[0]}},{{selected[1]}}</p>
-      <button class="btn btn-primary" (click)="toggleVertical()">Rotate</button>
-      <img src="../../assets/PatrolBoat.png" (click)="selectShip('patrolboat')">
-      <img src="../../assets/Submarine.png" (click)="selectShip('submarine')">
-      <img src="../../assets/Destroyer.png" (click)="selectShip('destroyer')">
-      <img src="../../assets/Battleship.png" (click)="selectShip('battleship')">
-      <img src="../../assets/AircraftCarrier.png" (click)="selectShip('aircraftcarrier')">
-    </div>
-  </div>
 </div>

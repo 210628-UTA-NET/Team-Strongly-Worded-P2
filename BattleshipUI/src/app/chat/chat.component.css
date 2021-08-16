@@ -1,7 +1,8 @@
 .chat-messages {
-    width:25%;
+    width:20%;
     position: relative;
     float:right;
+    height:100%;
  }
  
 .chat-messages-show-container{
@@ -25,10 +26,9 @@
     padding-bottom: 2%;
 }
 .chat-messages-create-input {
-    padding: 12px;
-    margin: 29px 30px;
+    padding: 1%;
+    margin: 10% 10%;
     flex:2;
-    margin-left: 15%;
 }
 .chat-messages-create-button {
     height: 50px;
